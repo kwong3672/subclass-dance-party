@@ -13,7 +13,7 @@ $(document).ready(function() {
     /* dancerMakerFunctionName is a string which must match
      * one of the dancer maker functions available in global scope.
      * A new object of the given type will be created and added
-     * to the stage.
+     * to the stage
      */
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
 
@@ -21,12 +21,20 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
+    //this.$node = $('<p>test</p>');
 
-    var dancer = dancerMakerFunction(
+    var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+
+    dancer.$node = $('<span class='+ dancerMakerFunctionName + '>test</span>');
+    dancer.setPosition($("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000);
+
+    //$("body").append( "<p>Test</p>" );
     $('body').append(dancer.$node);
   });
 });
