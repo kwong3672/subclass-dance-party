@@ -3,7 +3,8 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background-image: url('http://fullhdpictures.com/wp-content/uploads/2016/04/Dance-Floor-Photos.jpg');
+  background-size: 100% 100%;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -22,10 +23,34 @@ body, a:link, a:visited, a:active{
 }
 .dancer{
   border:10px solid red;
-  border-radius:10px;
-  position:absolute;
-}
-.makeBlinkyDancer {
+  border-radius:50px;
+  background: red;
   position: absolute;
-  
+}
+.blinkyDancer {
+  display: inline;
+  background: url('./src/images/dancingPanda.gif');
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  background-size: 100%;
+  transition: width 2s, height 2s, transform 2s;
+}
+
+.blinkyDancer:hover {
+  height: 200px;
+  width: 200px;
+  transform: rotate(180deg);
+}
+
+.dancer2 {
+  display: inline;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transition: width 1s, height 1s;
+}
+.dancer2:hover {
+  width: 100px;
+  height: 100px;
 }
