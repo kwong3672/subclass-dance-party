@@ -44,6 +44,10 @@ $(document).ready(function() {
     var startTop = 50;
     for (var i = 0; i < arr.length; i++) {
       // debugger;
+      if (startLeft > $('body').width() * 0.8) {
+        startTop += 200;
+        startLeft = 50;
+      }
       arr[i].style.top = startTop + 'px';
       arr[i].style.left = startLeft + 'px';
       // console.log(arr[i]);
@@ -54,18 +58,64 @@ $(document).ready(function() {
   $('.changeBackground').on('change', function() {
     $('body').css('background-image',  'url(./src/images/' + this.value + ')');
   });
+
+
+  $('.interact').on('click', function() {
+    var dancerArr = $('.dancer'); 
+    for (var i = 0; i < dancerArr.length; i++) {
+      for (var j = 0; j < dancerArr.length; j++) {
+        var top1 = dancerArr[i].style.top.slice(0, dancerArr[i].style.top.length - 2);
+        var top2 = dancerArr[j].style.top.slice(0, dancerArr[j].style.top.length - 2);
+        var left1 = dancerArr[i].style.left.slice(0, dancerArr[i].style.left.length - 2);
+        var left2 = dancerArr[j].style.left.slice(0, dancerArr[j].style.left.length - 2);
+        debugger;
+        var squareTop = (top1 - top2) * (top1 - top2);
+        var squareLeft = (left1 - left2) * (left1 - left2);
+        var distance = Math.sqrt(squareTop + squareLeft);
+        // var distance = Math.sqrt(Math.abs(Math.pow((top1 - top2), 2)) + Math.abs(Math.pow((left1 - left2), 2)));
+        if (distance !== 0 && distance < 150) {
+          // dancerArr[j].style.top = top1 + 'px';
+          // dancerArr[i].style.top = top2 + 'px';
+          // dancerArr[j].style.left = left1 + 'px';
+          // dancerArr[i].style.left = left2 + 'px';
+
+          dancerArr[i].classList.add('tooClose');
+          dancerArr[j].classList.add('tooClose');
+          // dancerArr.toggle();
+          // dancerArr[j].fadeTo("slow", 0.2);
+        }
+      }
+    }
+  });
 });
 
 // $('document').on('click')
 
-$(document).on('mouseover', '.dancer', function() {
+$(document).on('mouseover', '.slothDancer', function() {
   var that = this;
-  // $
-  setTimeout(function() { that.style.display = 'inline'; }, 1000);
+  $(this).fadeToggle(1000);
+  setTimeout(function() { that.style.display = 'inline'; }, 1200 );
 });
 
-$(document).on('mousedown', '.dancer', function() {
-  var that = this;
+// this will drag an item when you mousedown
+// $(document).on('mousedown', '.dancer', function() {
+  // var that = this;
+// 
+// });
 
+// $(document).on('mouseover', '.catDancer', function() {
+//   $(this).style.left 
+
+// });
+$(document).on('mouseover', '.catDancer', function() {
+  $(this).animate({left: '+=50px'}, 1000);
 });
+
+$(document).on('click', '.tooClose', function() {
+  $(this).removeClass('tooClose');
+});
+
+
+
+
 
